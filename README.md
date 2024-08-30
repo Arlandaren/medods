@@ -10,3 +10,34 @@ docker-compose up</code></pre>
             </li>
             <li><strong>Сервер запущен на порту 8081</strong></li>
         </ol>
+
+<h2>API</h2>
+
+        <h3>Endpoint 1</h3>
+        <ul>
+            <li><strong>Метод:</strong> GET</li>
+            <li><strong>Путь:</strong> /api/auth/token/:user_id</li>
+            <li><strong>Вывод:</strong></li>
+        </ul>
+        <pre><code>{
+    "access": "string",
+    "refresh": "string"
+}
+
+        <h3>Endpoint 2</h3>
+        <ul>
+            <li><strong>Метод:</strong> POST</li>
+            <li><strong>Путь:</strong> /api/auth/token/refresh</li>
+            <li><strong>Параметры запроса:</strong> Refresh токен в формате JSON:</li>
+        </ul>
+        <pre><code>{
+    "access_token": "string",
+    "refresh_token": "string"
+}
+        <ul>
+            <li><strong>Вывод:</strong></li>
+        </ul>
+        <pre><code>{
+    "access": "string",
+    "refresh": "string"
+}</code></pre>

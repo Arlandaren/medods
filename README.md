@@ -22,7 +22,7 @@ docker-compose up</code></pre>
         <pre><code>{
     "access": "string",
     "refresh": "string"
-}
+}</code></pre>
 
         <h3>Endpoint 2</h3>
         <ul>
@@ -33,7 +33,7 @@ docker-compose up</code></pre>
         <pre><code>{
     "access_token": "string",
     "refresh_token": "string"
-}
+}</code></pre>
         <ul>
             <li><strong>Вывод:</strong></li>
         </ul>

@@ -9,10 +9,10 @@ import (
 func InitRoutes(r *gin.Engine, s *services.Services) {
 	api_router := r.Group("api")
 	{
-		api_router.Group("auth")
+		auth := api_router.Group("auth")
 		{
-			api_router.GET("/token/:user_id", GenerateTokens(s))
-			api_router.POST("/token/refresh", RefreshAccessToken(s))
+			auth.GET("/token/:user_id", GenerateTokens(s))
+			auth.POST("/token/refresh", RefreshAccessToken(s))
 		}
 	}
 

@@ -20,8 +20,8 @@ docker-compose up</code></pre>
             <li><strong>Вывод:</strong></li>
         </ul>
         <pre><code>{
-    "access": "string",
-    "refresh": "string"
+    "Access": "string",
+    "Refresh": "string"
 }</code></pre>
 
 <h3>Endpoint 2</h3>
@@ -38,6 +38,6 @@ docker-compose up</code></pre>
             <li><strong>Вывод:</strong></li>
         </ul>
         <pre><code>{
-    "access": "string",
-    "refresh": "string"
+    "Access": "string",
+    "Refresh": "string"
 }</code></pre>

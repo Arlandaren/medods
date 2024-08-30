@@ -13,7 +13,7 @@ docker-compose up</code></pre>
 
 <h2>API</h2>
 
-        <h3>Endpoint 1</h3>
+<h3>Endpoint 1</h3>
         <ul>
             <li><strong>Метод:</strong> GET</li>
             <li><strong>Путь:</strong> /api/auth/token/:user_id</li>
@@ -24,7 +24,7 @@ docker-compose up</code></pre>
     "refresh": "string"
 }</code></pre>
 
-        <h3>Endpoint 2</h3>
+<h3>Endpoint 2</h3>
         <ul>
             <li><strong>Метод:</strong> POST</li>
             <li><strong>Путь:</strong> /api/auth/token/refresh</li>

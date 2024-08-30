@@ -18,4 +18,12 @@ services:
       dockerfile: Dockerfile
     environment:
       - ADDR=0.0.0.0:8080
-      - POSTGRES_CONN=postgresql://user:password@postgres:5432/db
+      - POSTGRES_CONN=postgresql://test:medods@postgres:5432/testtask
+      - JWT_KEY=medodsisthebest
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+    restart: always
+    ports:
+      - 8081:8080

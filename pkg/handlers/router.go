@@ -11,7 +11,7 @@ func InitRoutes(r *gin.Engine, s *services.Services) {
 	{
 		api_router.Group("auth")
 		{
-			api_router.POST("token", )
+			api_router.POST("token:user_id", GenerateTokens(s))
 		}
 	}
 

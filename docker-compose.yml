@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  postgre:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=medods
+      - POSTGRES_USER=test
+      - POSTGRES_DB=testtask
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - pg_data:/var/lib/postgresql/data/pgdata
+    ports:
+      - 5433:5432
+
+  server:
+    build: ./
+    environment:
+      - ADDRESS=0.0.0.0:8080
+      - PG_STRING=postgresql://test:medods@postgre:5432/testtask
+      - JWT_KEY=medodsisthebest
+    volumes:
+      - .:/app
+    depends_on:
+      - postgre
+    restart: always
+    ports:
+      - 8081:8080
+
+volumes:
+  pg_data:

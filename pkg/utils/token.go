@@ -82,15 +82,23 @@ func generateRefreshToken() string {
 }
 
 func ValidateRefreshToken(userID, refreshToken string, s * services.Services) (bool, error) {
-	refreshHash, err := s.AuthS.GetRefreshToken(refreshToken,userID)
+	refreshHashs, err := s.AuthS.GetRefreshTokens(userID)
 	if err != nil {
 		return false, err
+	}
+	var invalids int
+	for _,hash := range refreshHashs{
+		err = bcrypt.CompareHashAndPassword([]byte(hash), []byte(refreshToken))
+		if err != nil {
+			invalids++
+		}else{
+			return true, nil
+		}
 	}
 	
-	err = bcrypt.CompareHashAndPassword([]byte(refreshHash), []byte(refreshToken))
-	if err != nil {
-		return false, err
+	if invalids > 0{
+		return true, nil
 	}
 
-	return true, nil
+	return false,nil
 }

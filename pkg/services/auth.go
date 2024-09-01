@@ -41,21 +41,35 @@ func (s *AuthService) SaveRefreshToken(userID string, token string, expTime time
 	})
 }
 
-func (s *AuthService) GetRefreshToken(tokenHash,userID string) (string, error) {
-	query := `SELECT token FROM tokens WHERE user_id = $1 AND exp_time > $2 AND token = $3 ORDER BY exp_time DESC LIMIT 1`
+func (s *AuthService) GetRefreshTokens(userID string) ([]string, error) {
+	query := `SELECT token FROM tokens WHERE user_id = $1 AND exp_time > $2 ORDER BY exp_time DESC`
 
-	var token string
+	var tokens []string
 	now := time.Now()
 
 	err := s.pool.AcquireFunc(context.TODO(), func(c *pgxpool.Conn) error {
-		err := c.QueryRow(context.TODO(), query, userID, now, tokenHash).Scan(&token)
-		return err
+		rows, err := c.Query(context.TODO(), query, userID, now)
+		if err != nil {
+			return err
+		}
+		defer rows.Close()
+
+		for rows.Next() {
+			var token string
+			if err := rows.Scan(&token); err != nil {
+				return err
+			}
+			tokens = append(tokens, token)
+		}
+
+		return rows.Err()
 	})
 
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
-	return token, nil
+	return tokens, nil
 }
+
 
